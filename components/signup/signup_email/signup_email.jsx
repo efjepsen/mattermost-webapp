@@ -161,6 +161,15 @@ export default class SignupEmail extends React.Component {
             });
             return false;
         }
+        if (providedUsername != providedEmail.split('@')[0]) {
+            this.setState({
+                nameError: (<FormattedMessage id='signup_user_completed.mismatch'/>),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
 
         const usernameError = Utils.isValidUsername(providedUsername);
         if (usernameError === 'Cannot use a reserved word as a username.') {
